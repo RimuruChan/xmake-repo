@@ -9,7 +9,7 @@ package("rpm")
 
     add_deps("cmake", "lua")
     add_deps("python 3.x", {kind = "binary"})
-    add_deps("popt", "libcap", "acl")
+    add_deps("popt", "libcap", "acl", "sqlite3")
 
     on_install("linux", function (package)
         local configs = {
