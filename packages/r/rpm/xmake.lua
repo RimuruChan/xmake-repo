@@ -9,7 +9,7 @@ package("rpm")
 
     add_deps("cmake", "lua", "doxygen")
     add_deps("python 3.x", {kind = "binary"})
-    add_deps("popt", "libcap", "acl", "sqlite3", "libarchive", "elfutils", "lzma", "zstd", "zlib")
+    add_deps("openssl", "popt", "libcap", "acl", "sqlite3", "libarchive", "elfutils", "lzma", "zstd", "zlib")
 
     on_install("linux", function (package)
         local configs = {
