@@ -23,6 +23,9 @@ package("rpm")
             "-DWITH_OPENSSL=ON",
             "-DWITH_SELINUX=OFF",
             "-DENABLE_TESTSUITE=OFF"}
+        io.replace("macros.in", "@prefix@", package:installdir(), {plain = true})
+        io.replace("platform.in", "@prefix@", package:installdir(), {plain = true})
+        io.replace("scripts/pkgconfigdeps.sh", "/usr/bin/pkg-config", "pkg-config", {plain = true})
         import("package.tools.cmake").install(package, configs)
     end)
 
