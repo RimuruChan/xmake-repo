@@ -7,7 +7,7 @@ package("rpm")
 
     add_versions("4.19.0", "19083de356ef80f2497686fd6e52011ec2d3e2dfb481e113a9f4dd1b03b47347")
 
-    add_deps("cmake", "lua")
+    add_deps("cmake", "lua", "doxygen")
     add_deps("python 3.x", {kind = "binary"})
     add_deps("popt", "libcap", "acl", "sqlite3", "libarchive", "elfutils", "lzma", "zstd", "zlib")
 
