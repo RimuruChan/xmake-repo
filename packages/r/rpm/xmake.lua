@@ -9,7 +9,8 @@ package("rpm")
 
     add_deps("cmake", "lua", "doxygen")
     add_deps("python 3.x", {kind = "binary"})
-    add_deps("openssl", "popt", "libcap", "acl", "sqlite3", "libarchive", "elfutils", "lzma", "zstd", "zlib")
+    add_deps("openssl", "popt", "libcap", "acl", "sqlite3", "libarchive", "lzma", "zstd", "zlib")
+    add_deps("elfutils", {configs = {libdw = true}})
 
     on_install("linux", function (package)
         local configs = {
@@ -28,7 +29,8 @@ package("rpm")
         io.replace("scripts/pkgconfigdeps.sh", "/usr/bin/pkg-config", "pkg-config", {plain = true})
         io.replace("CMakeLists.txt", "pkg_check_modules(LIBELF IMPORTED_TARGET libelf)", "", {plain = true})
         io.replace("CMakeLists.txt", "PkgConfig::LIBELF", "libelf", {plain = true})
-        io.replace("build/CMakeLists.txt", "PkgConfig::LIBELF", "libelf", {plain = true})
+        io.replace("build/CMakeLists.txt", "PkgConfig::LIBELF", "elf", {plain = true})
+        io.replace("build/CMakeLists.txt", "PkgConfig::LIBDW", "dw", {plain = true})
         import("package.tools.cmake").install(package, configs, {packagedeps = "elfutils"})
     end)
 
