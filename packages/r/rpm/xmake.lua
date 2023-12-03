@@ -27,8 +27,8 @@ package("rpm")
         io.replace("platform.in", "@prefix@", package:installdir(), {plain = true})
         io.replace("scripts/pkgconfigdeps.sh", "/usr/bin/pkg-config", "pkg-config", {plain = true})
         io.replace("CMakeLists.txt", "pkg_check_modules(LIBELF IMPORTED_TARGET libelf)", "", {plain = true})
-        io.replace("CMakeLists.txt", "target_link_libraries(elfdeps PRIVATE PkgConfig::LIBELF)",
-            "target_link_libraries(elfdeps PRIVATE libelf)", {plain = true})
+        io.replace("CMakeLists.txt", "PkgConfig::LIBELF", "libelf", {plain = true})
+        io.replace("build/CMakeLists.txt", "PkgConfig::LIBELF", "libelf", {plain = true})
         import("package.tools.cmake").install(package, configs, {packagedeps = "elfutils"})
     end)
 
